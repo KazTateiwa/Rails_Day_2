@@ -1,0 +1,21 @@
+<h1>Password Checker</h1>
+
+<hr/>
+<form action="check_password" method="get">
+  <input type="text" name="user_id" placeholder="User ID"/>
+  <input type="text" name="password" placeholder="Password"/>
+  <input type="submit" value="Submit"/>
+</form>
+
+<h2>Your Credentials are: <div class="red"><%= flash.now[:alert] %></div>
+                          <div class="green"><%= flash.now[:notice] %></div>
+</h2>
+
+<ul style="list-style:none">
+  <!-- <li class= @idlength>Your User Id must be at least 6 characters</li> -->
+  <li class="red"><%= flash.now[:idlength] %></li>
+  <li class="red"><%= flash.now[:passlength] %></li>
+  <li class="red"><%= flash.now[:passnum] %></li>
+  <li class="red"><%= flash.now[:idnum] %></li>
+  <li class="red"><%= flash.now[:same] %></li>
+</ul>
