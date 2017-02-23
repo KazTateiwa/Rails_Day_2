@@ -6,8 +6,7 @@ class MainController < ApplicationController
     @password = params[:password]
     # @cred = " "
     # Do some checks for whether they are valid; if they are, return with the String Credentials are acceptable, otherwise use the String Try again.
-    if (@user_id.to_s.length >= 6 && @user_id =~ /\d/ && @user_id != @password &&
-      @password.to_s.length >= 6 && @password =~ /\d/)
+    if (@user_id.to_s.length >= 6 && @user_id =~ /\d/ && @user_id != @user_id.downcase && @user_id != @password && @password.to_s.length >= 6 && @password =~ /\d/ && @password != @password.downcase)
       # @cred = "Valid"
       flash.now[:notice] = "Valid"
     # else
@@ -37,6 +36,16 @@ class MainController < ApplicationController
     if !(@password =~ /\d/)
       flash.now[:alert] = "Invalid"
       flash.now[:passnum] ="Your password must include at least one number"
+    end
+
+    if @user_id.to_s == @user_id.downcase
+      flash.now[:alert] = "Invalid"
+      flash.now[:idupcase] ="Your User ID must include at least one uppercase letter"
+    end
+
+    if @password.to_s == @password.downcase
+      flash.now[:alert] = "Invalid"
+      flash.now[:passupcase] ="Your Password must include at least one uppercase letter"
     end
   end
 end
